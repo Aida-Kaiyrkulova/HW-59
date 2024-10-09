@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { Movie } from '../../types';
-import MovieItem from '../../components/MovieItem/MovieItem.tsx';
+import React, { useState } from "react";
+import { Movie } from "../../types";
+import MovieItem from "../../components/MovieItem/MovieItem.tsx";
 
-const MovieContainer: React.FC = () => {
+interface MovieContainerProps {}
+
+const MovieContainer: React.FC<MovieContainerProps> = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [newMovie, setNewMovie] = useState<string>('');
+  const [newMovie, setNewMovie] = useState<string>("");
 
   const addMovie = () => {
     if (newMovie.trim()) {
@@ -13,16 +15,18 @@ const MovieContainer: React.FC = () => {
         title: newMovie,
       };
       setMovies([...movies, newEntry]);
-      setNewMovie('');
+      setNewMovie("");
     }
   };
 
   const editMovie = (id: number, title: string) => {
-    setMovies(movies.map(movie => (movie.id === id ? { ...movie, title } : movie)));
+    setMovies(
+      movies.map((movie) => (movie.id === id ? { ...movie, title } : movie)),
+    );
   };
 
   const deleteMovie = (id: number) => {
-    setMovies(movies.filter(movie => movie.id !== id));
+    setMovies(movies.filter((movie) => movie.id !== id));
   };
 
   return (

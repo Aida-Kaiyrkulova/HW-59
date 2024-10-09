@@ -1,9 +1,13 @@
-import './App.css'
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import MovieContainer from './containers/Movie/MovieContainer.tsx';
 
-const App = () => (
-    <>
+const App: React.FC = () => {
+  return (
+    <div className="container mt-4">
+      <MovieContainer />
+    </div>
+  );
+};
 
-    </>
-);
-
-export default App
+export default App;

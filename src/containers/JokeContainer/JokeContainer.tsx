@@ -5,15 +5,22 @@ import Joke from "../../components/Joke/Joke.tsx";
 const JokeContainer: React.FC = () => {
   const [joke, setJoke] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const url = 'https://api.chucknorris.io/jokes/random';
 
   const fetchJoke = async () => {
-    setLoading(true);
     try {
-      const response = await fetch("https://api.chucknorris.io/jokes/random");
+      setLoading(true);
+      setError(null);
+      const response = await fetch(url);
       const data = await response.json();
       setJoke(data.value);
     } catch (error) {
-      console.error("Error", error);
+      console.error('Error fetching joke:', error);
+      setError('Не удалось загрузить шутку. Попробуйте еще раз.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -23,7 +30,13 @@ const JokeContainer: React.FC = () => {
 
   return (
     <div className="text-center">
-      <Joke joke={joke} loading={loading} />
+      {loading ? (
+        <p>Загрузка шутки...</p>
+      ) : error ? (
+        <p className="text-danger">{error}</p>
+      ) : (
+        <Joke joke={joke} />
+      )}
       <Button onClick={fetchJoke} />
     </div>
   );

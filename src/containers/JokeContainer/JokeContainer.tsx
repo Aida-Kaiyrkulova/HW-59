@@ -7,7 +7,7 @@ const JokeContainer: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const url = 'https://api.chucknorris.io/jokes/random';
+  const url = "https://api.chucknorris.io/jokes/random";
 
   const fetchJoke = async () => {
     try {
@@ -17,8 +17,8 @@ const JokeContainer: React.FC = () => {
       const data = await response.json();
       setJoke(data.value);
     } catch (error) {
-      console.error('Error fetching joke:', error);
-      setError('Не удалось загрузить шутку. Попробуйте еще раз.');
+      console.error("Error fetching joke:", error);
+      setError("Не удалось загрузить шутку. Попробуйте еще раз.");
     } finally {
       setLoading(false);
     }

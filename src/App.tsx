@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import MovieContainer from "./containers/Movie/MovieContainer.tsx";
+import MovieContainer from "./containers/MovieContainer/MovieContainer.tsx";
 import JokeContainer from "./containers/JokeContainer/JokeContainer.tsx";
 
 const App: React.FC = () => {
